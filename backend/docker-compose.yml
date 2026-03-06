@@ -1,0 +1,16 @@
+services:
+  postgres:
+    image: postgres:18
+    container_name: postgres_task_master
+    restart: always
+    environment:
+      POSTGRES_USER: diego
+      POSTGRES_PASSWORD: postgres_task_master
+      POSTGRES_DB: task_master_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - task_master_postgres_data:/var/lib/postgresql
+
+volumes:
+  task_master_postgres_data:
