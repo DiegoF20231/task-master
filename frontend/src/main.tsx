@@ -12,6 +12,8 @@ import { LoginPage } from "./users/pages/login-page.tsx"
 import { RegisterPage } from "./users/pages/register-page.tsx"
 
 import { DashboardLayout } from "./dashboard/components/dashboard-layout.tsx"
+import { DashboardPage } from "./dashboard/pages/dashboard-page.tsx"
+import { ProjectsPage } from "./dashboard/projects/pages/projects-page.tsx"
 
 const router = createBrowserRouter([
   {
@@ -42,7 +44,14 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <div>Dashboard Overview</div>,
+        element: <DashboardPage />,
+      }, {
+        path: 'projects',
+        element: <ProjectsPage />
+      },
+      {
+        path: "settings",
+        element: <div>Configuración</div>,
       }
     ]
   }

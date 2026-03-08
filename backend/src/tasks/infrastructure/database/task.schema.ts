@@ -1,11 +1,11 @@
-import { usersTable } from "@users/infrastructure/database/user.schema";
+import { projectsTable } from "@projects/infrastructure/database/project.schema";
 import { pgTable, uuid, varchar } from "drizzle-orm/pg-core";
 
 export const tasksTable = pgTable("tasks", {
-	taskId: uuid("task_id").primaryKey().defaultRandom(),
+	taskId: uuid("task_id").primaryKey().notNull(),
 	title: varchar({ length: 255 }).notNull(),
 	priority: varchar({ length: 50 }).notNull(),
-	userId: uuid("user_id")
+	projectId: uuid("project_id")
 		.notNull()
-		.references(() => usersTable.userId, { onDelete: "restrict" }),
+		.references(() => projectsTable.projectId, { onDelete: "restrict" }),
 });

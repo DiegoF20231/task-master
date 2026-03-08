@@ -1,24 +1,29 @@
-export class Result<TValue> {
-	private constructor(
-		public readonly isSuccess: boolean,
-		public readonly isFailure: boolean,
-		public readonly value?: TValue,
-		public readonly error?: Error,
-	) {}
+import { AppError } from "./error";
 
-	public static success<TValue>(value: TValue): Result<TValue> {
-		return new Result<TValue>(true, false, value, undefined);
+export class Result<TValue> {
+	public readonly isSuccess: boolean;
+	public readonly value?: TValue;
+	public readonly error?: AppError;
+
+	private constructor(isSuccess: boolean, value?: TValue, error?: AppError) {
+		this.isSuccess = isSuccess;
+		this.value = value;
+		this.error = error;
 	}
 
-	public static fail<TValue>(error: Error): Result<TValue> {
-		return new Result<TValue>(false, true, undefined, error);
+	public static success<TValue>(value: TValue): Result<TValue> {
+		return new Result<TValue>(true, value, undefined);
+	}
+
+	public static fail<TValue>(error: AppError): Result<TValue> {
+		return new Result<TValue>(false, undefined, error);
 	}
 
 	getResult(): TValue | undefined {
 		return this.value;
 	}
 
-	getError(): Error | undefined {
+	getError(): AppError | undefined {
 		return this.error;
 	}
 
@@ -36,7 +41,10 @@ export class Result<TValue> {
 		return Result.fail(this.error!);
 	}
 
-	match<R>(onSuccess: (value: TValue) => R, onFailure: (error: Error) => R): R {
+	match<R>(
+		onSuccess: (value: TValue) => R,
+		onFailure: (error: AppError) => R,
+	): R {
 		if (this.isSuccess && this.value !== undefined) {
 			return onSuccess(this.value);
 		}

@@ -1,3 +1,5 @@
+import { JwtPayload } from "jsonwebtoken";
+
 export interface TokenGenerator {
-	generate(payload: object): Promise<string>;
+	generate(payload: JwtPayload): string;
 }

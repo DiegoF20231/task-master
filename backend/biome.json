@@ -18,6 +18,12 @@
       "style": {
         "noNonNullAssertion": "off",
         "useImportType": "off"
+      },
+      "suspicious": {
+        "noEmptyInterface": "off"
+      },
+      "complexity": {
+        "noStaticOnlyClass": "off"
       }
     }
   },
@@ -30,7 +36,7 @@
     "enabled": true,
     "actions": {
       "source": {
-        "organizeImports": "on"
+        "organizeImports": "off"
       }
     }
   }

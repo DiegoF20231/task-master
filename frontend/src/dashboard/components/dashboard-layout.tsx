@@ -1,6 +1,7 @@
 import { Outlet } from 'react-router'
 import { AppSidebar } from '@/components/app-sidebar'
 import { ModeToggle } from '@/components/mode-toggle'
+import { UserNav } from '@/components/user-nav'
 import { SidebarProvider, SidebarInset, SidebarTrigger } from '@/components/ui/sidebar'
 import { Separator } from '@/components/ui/separator'
 
@@ -15,6 +16,7 @@ export const DashboardLayout = () => {
                         <Separator orientation="vertical" className="mr-2 h-4" />
                     </div>
                     <div className="flex items-center gap-2">
+                        <UserNav />
                         <ModeToggle />
                     </div>
                 </header>

@@ -19,6 +19,7 @@
     "paths": {
       "@common/*": ["./src/common/*"],
       "@users/*": ["./src/users/*"],
+      "@projects/*": ["./src/projects/*"],
       "@tasks/*": ["./src/tasks/*"]
     }
   },
